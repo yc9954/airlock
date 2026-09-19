@@ -32,6 +32,8 @@ sandboxes; an open model on **Nosana** answers `why` questions from the ledger.
 
 ## Demo
 
+Pitch deck (10 slides, opens in any browser): [`demo/airlock-pitch.html`](demo/airlock-pitch.html).
+
 ![Airlock demo](demo/v3/airlock-demo.gif)
 
 ▶ Higher quality: [`demo/v3/airlock-demo.mp4`](demo/v3/airlock-demo.mp4) (H.264, 1.5 MB).
