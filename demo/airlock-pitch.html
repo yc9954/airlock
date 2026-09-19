@@ -22,14 +22,15 @@ button:disabled { opacity: 0.28; cursor: default; }
 .eyebrow { font-size: 17px; font-weight: 650; letter-spacing: 2.4px; text-transform: uppercase; margin: 0px 0px 24px; display: flex; align-items: center; gap: 18px; }
 .eyebrow::before { content: ""; width: 29px; height: 2px; background: var(--red); }
 h1, h2, h3, p { margin: 0px; }
-h2 { font-size: 58px; line-height: 1.22; letter-spacing: -2.4px; font-weight: 750; word-break: keep-all; text-wrap: balance; max-width: 1220px; }
+h2 { font-size: 56px; line-height: 1.22; letter-spacing: -2.4px; font-weight: 750; word-break: keep-all; text-wrap: balance; max-width: 1240px; }
 h3 { font-size: 31px; letter-spacing: -1px; line-height: 1.35; }
-.ko { font-size: 24px; line-height: 1.55; letter-spacing: -0.5px; word-break: keep-all; margin-top: 18px; max-width: 1140px; }
-.en { font-size: 17px; line-height: 1.5; letter-spacing: 0px; margin-top: 10px; max-width: 1140px; color: #623224; }
+.ko { font-size: 24px; line-height: 1.55; letter-spacing: -0.5px; word-break: keep-all; margin-top: 18px; max-width: 1180px; }
+.en { font-size: 17px; line-height: 1.5; letter-spacing: 0px; margin-top: 10px; max-width: 1180px; color: #623224; }
 .lede { font-size: 26px; line-height: 1.6; letter-spacing: -0.5px; word-break: keep-all; color: rgb(99, 103, 92); margin-top: 24px; }
 .accent { color: var(--red); }
 .fine { font-size: 18px; line-height: 1.65; word-break: keep-all; color: var(--muted); }
 .num { font-variant-numeric: tabular-nums; }
+.cite { font-size: 15px; color: #623224; letter-spacing: 0; }
 .slide-footer { position: absolute; bottom: 27px; left: 82px; right: 82px; border-top: 1px solid var(--line); padding-top: 16px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; letter-spacing: 1.5px; color: var(--muted); }
 .slide-footer b { color: inherit; font-size: 16px; letter-spacing: -0.5px; }
 /* cover */
@@ -41,7 +42,16 @@ h3 { font-size: 31px; letter-spacing: -1px; line-height: 1.35; }
 .stat + .stat { border-left: 1px solid var(--line); padding-left: 28px; }
 .stat b { display: block; font-size: 60px; font-weight: 700; letter-spacing: -3px; line-height: 1; font-variant-numeric: tabular-nums; }
 .stat span { display: block; margin-top: 12px; font-size: 16px; letter-spacing: 0.2px; word-break: keep-all; }
-/* three-way comparison */
+/* why */
+.why { justify-content: center; align-items: center; }
+.why h1 { font-size: 300px; font-weight: 800; letter-spacing: -16px; line-height: 1; color: #211f19; }
+/* two / three column layouts */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; margin-top: 40px; }
+.two .col { border-top: 2px solid #211f19; padding-top: 22px; }
+.two .col.win { background: #fff1d6; color: #211f19; border-top: 0; border-radius: 16px; padding: 28px 32px; }
+.two small { font-size: 15px; letter-spacing: 1.4px; text-transform: uppercase; font-weight: 650; }
+.two h3 { margin-top: 12px; font-size: 32px; }
+.two p { margin-top: 14px; font-size: 21px; line-height: 1.55; word-break: keep-all; }
 .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; margin-top: 46px; }
 .three .col { border-top: 1px solid var(--line); padding-top: 22px; min-height: 420px; }
 .three .col.win { background: #fff1d6; color: #211f19; border-top: 0; border-radius: 16px; padding: 30px 32px; }
@@ -50,6 +60,19 @@ h3 { font-size: 31px; letter-spacing: -1px; line-height: 1.35; }
 .three .unit { font-size: 22px; letter-spacing: -0.3px; margin-top: 10px; }
 .three h3 { margin-top: 30px; font-size: 30px; }
 .three p { margin-top: 12px; font-size: 21px; line-height: 1.5; word-break: keep-all; }
+.conclusion { margin-top: 34px; background: #211f19; color: #fff1d6; border-radius: 16px; padding: 24px 30px; font-size: 24px; line-height: 1.5; word-break: keep-all; }
+.conclusion b { color: #f0c9a6; }
+.jam { display: flex; gap: 0; margin-top: 40px; border-top: 1px solid var(--line); padding-top: 26px; }
+.jam div { flex: 1; padding-right: 28px; }
+.jam div + div { border-left: 1px solid var(--line); padding-left: 28px; }
+.jam b { display: block; font-size: 72px; font-weight: 700; letter-spacing: -3.5px; line-height: 1; font-variant-numeric: tabular-nums; }
+.jam span { display: block; margin-top: 12px; font-size: 18px; word-break: keep-all; line-height: 1.45; }
+/* evidence table */
+.evidence { margin-top: 26px; border-top: 2px solid #211f19; }
+.evidence .row { display: grid; grid-template-columns: 260px 1fr; gap: 24px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 20px; line-height: 1.45; word-break: keep-all; }
+.evidence .row b { font-family: ui-monospace, Menlo, monospace; font-size: 18px; letter-spacing: -0.3px; }
+.evidence .row .bad { color: #7a1f0f; font-weight: 700; }
+.evidence .row .good { color: #211f19; font-weight: 700; background: #fff1d6; padding: 0 6px; border-radius: 6px; }
 /* composition space */
 .space { display: flex; align-items: center; gap: 18px; margin-top: 46px; }
 .space .fam { flex: 1; border: 2px solid #211f19; border-radius: 14px; padding: 22px 24px; min-height: 186px; }
@@ -147,23 +170,91 @@ html,body{background:#e3563b}
 <footer class="slide-footer"><b>airlock</b><span>DAYTONA HACKSPRINT SEOUL</span><span class="pageno"></span></footer>
 </section>
 
-<!-- 02 THREE WAYS -->
-<section class="slide" data-title="1,212개 구조를 고르는 세 가지 방법">
-<p class="eyebrow enter">문제 / 01</p>
-<h2 class="enter">1,212개 구조를 고르는 방법은 세 가지입니다.</h2>
-<p class="ko enter-late">전부 실행하거나, 에이전트 100개의 결과를 사람에게 넘기거나, 실험을 골라서 하거나.</p>
-<p class="en enter-late">Run everything, hand 100 agent outputs to a human, or choose which experiments to run.</p>
-<div class="three enter-late">
-<div class="col"><small>Grid search</small><div class="big">1,212</div><div class="unit">회 실험</div><h3>전부 실행</h3><p>모든 조합을 다 돌립니다. 정확하지만, 후보가 늘어나면 비용을 감당할 수 없습니다.</p></div>
-<div class="col"><small>에이전트 병렬 실행</small><div class="big">100</div><div class="unit">개 결과, 순위 없음</div><h3>사람이 고름</h3><p>에이전트 100개가 결과 100개를 냅니다. 순위도 근거도 없어서, 결국 사람이 다시 판단해야 합니다.</p></div>
-<div class="col win"><small>Airlock</small><div class="big">43</div><div class="unit">회 실험 · 챔피언 1개</div><h3>실험을 골라서 실행</h3><p>후보마다 점수를 실제로 재고, 효과 없는 계열은 더 돌리지 않고, 사람에게는 비용을 알려주며 두 번 물었습니다.</p></div>
-</div>
-<footer class="slide-footer"><b>airlock</b><span>문제</span><span class="pageno"></span></footer>
+<!-- 02 WHY -->
+<section class="slide why" data-title="Why?">
+<h1 class="enter">Why?</h1>
+<footer class="slide-footer"><b>airlock</b><span></span><span class="pageno"></span></footer>
 </section>
 
-<!-- 03 WHAT IT DOES -->
+<!-- 03 TREND -->
+<section class="slide" data-title="스펙 드리븐에서 아웃풋 드리븐으로">
+<p class="eyebrow enter">배경 / 01</p>
+<h2 class="enter">개발 방식이 '스펙 드리븐'에서 '아웃풋 드리븐'으로 바뀌고 있습니다.</h2>
+<p class="en enter-late">Development is moving from spec-driven to output-driven: generate many results first, then choose.</p>
+<div class="two enter-late">
+<div class="col"><small>지금까지 · 스펙 드리븐</small><h3>먼저 명세를 쓰고, 그대로 한 번 만든다.</h3><p>결과가 나쁘면 명세부터 다시 씁니다. 만드는 비용이 비쌌기 때문에 한 번에 맞히려고 했습니다.</p></div>
+<div class="col win"><small>지금 · 아웃풋 드리븐</small><h3>먼저 결과물을 여러 개 만들고, 그중에서 고른다.</h3><p>생성 비용이 싸졌기 때문에 가능해진 방식입니다. 그래서 지금의 추세는 <b>에이전트를 병렬로 많이 돌려 결과물을 빨리 만들고, 그중 하나를 고르는 것</b>입니다. 예: Cursor 2.0은 한 작업에 에이전트를 최대 8개 병렬로 실행합니다.</p></div>
+</div>
+<footer class="slide-footer"><b>airlock</b><span>배경</span><span class="pageno"></span></footer>
+</section>
+
+<!-- 04 TOO MANY CHOICES -->
+<section class="slide" data-title="결과물이 많아질수록 고르는 사람이 힘들어집니다">
+<p class="eyebrow enter">배경 / 02</p>
+<h2 class="enter">하지만 결과물이 많아질수록, 고르는 사람이 힘들어집니다.</h2>
+<p class="en enter-late">More outputs do not mean a better choice. Past a point, the person choosing gets worse, not better.</p>
+<div class="jam enter-late">
+<div><b>24종 → 3%</b><span>시식대에 잼 24종을 놓았을 때 구매율. 사람은 더 많이 모였지만(60%), 대부분 고르지 못하고 떠났습니다.</span></div>
+<div><b>6종 → 30%</b><span>잼 6종일 때 구매율. 선택지가 적을수록 실제로 고릅니다. <span class="cite">— Iyengar &amp; Lepper, 2000</span></span></div>
+<div><b>100개</b><span>에이전트 100개가 낸 결과물 100개. 순위도 근거도 없이 사람 앞에 놓이면, 선택이 아니라 부담이 됩니다.</span></div>
+</div>
+<div class="conclusion enter-late">그렇다면 — <b>에이전트가 최적의 합의점까지 대신 찾아주면 어떨까?</b> 에이전트가 쓸 수 있는 평가 함수만 있으면 가능합니다. 결과물을 사람에게 100개 보여주는 대신, 에이전트가 직접 점수를 재고 골라서 하나만 가져오는 것입니다.</div>
+<footer class="slide-footer"><b>airlock</b><span>배경</span><span class="pageno"></span></footer>
+</section>
+
+<!-- 05 MORE AGENTS? -->
+<section class="slide" data-title="에이전트가 많을수록 무조건 좋은가?">
+<p class="eyebrow enter">배경 / 03</p>
+<h2 class="enter">에이전트가 많을수록 무조건 좋은가? 아닙니다. 적정선이 있습니다.</h2>
+<p class="en enter-late">Is more agents always better? No — there is a right amount, and it depends on the task.</p>
+<div class="two enter-late">
+<div class="col"><small>많을수록 좋다는 근거</small><h3>"More Agents Is All You Need"</h3><p>같은 LLM을 여러 개 띄워 답을 모아 투표만 해도, 에이전트 수가 늘수록 정확도가 올라갑니다. <span class="cite">— Li et al., 2024</span></p></div>
+<div class="col"><small>많으면 나빠진다는 근거</small><h3>"Why Do Multi-Agent LLM Systems Fail?"</h3><p>실제 멀티에이전트 프레임워크의 실패를 14가지 유형으로 분류했습니다. 큰 축 하나가 <b>에이전트 간 불일치</b> — 서로 합의를 못 합니다. 많아지면 노이즈가 되고, 합의점을 찾기 어려워집니다. <span class="cite">— Cemri et al., 2025</span></p></div>
+</div>
+<div class="conclusion enter-late">적정선은 태스크마다 다릅니다. 그래서 Airlock은 "몇 개를, 어떤 조합으로 돌릴지"를 미리 정하지 않습니다. <b>평가 함수 하나</b>로 매 라운드 결과를 측정하고, 그 결과에 따라 다음에 무엇을 돌릴지 스스로 바꿉니다 — 탐색 알고리즘 자체가 진화하는 <b>진화적 탐색</b>입니다.</div>
+<footer class="slide-footer"><b>airlock</b><span>배경</span><span class="pageno"></span></footer>
+</section>
+
+<!-- 06 ALPHAEVOLVE -->
+<section class="slide" data-title="AlphaEvolve, 그리고 Daytona가 채우는 빈자리">
+<p class="eyebrow enter">배경 / 04</p>
+<h2 class="enter">이 방향의 대표가 Google DeepMind의 AlphaEvolve입니다 (2025년 5월).</h2>
+<p class="en enter-late">AlphaEvolve: an LLM proposes candidates, an evaluator scores them, only the best survive to the next generation. It needs large-scale execution infrastructure — which is exactly what Daytona provides.</p>
+<div class="chain enter-late">
+<div class="step"><small>1 · 제안</small>LLM(Gemini)이 코드 후보를 수백·수천 개 제안합니다.</div>
+<div class="arrow">→</div>
+<div class="step"><small>2 · 평가</small>자동 평가 함수가 후보마다 점수를 매깁니다.</div>
+<div class="arrow">→</div>
+<div class="step"><small>3 · 선택</small>점수가 높은 후보만 다음 세대로 남깁니다.</div>
+<div class="arrow">→</div>
+<div class="step out"><small>4 · 반복</small>가장 좋은 결과만 가져갑니다. 4×4 복소 행렬곱 48회(1969년 이후 첫 개선), 데이터센터 컴퓨팅 0.7% 회수.</div>
+</div>
+<div class="two enter-late" style="margin-top:34px">
+<div class="col"><small>전제 조건</small><h3>대규모 실행·평가 인프라</h3><p>후보 수천 개를 실제로 실행해야 하므로 대규모 컴퓨팅이 있어야만 쓸 수 있었습니다. 일반 공개 서비스가 아니라 제한된 접근입니다.</p></div>
+<div class="col win"><small>Daytona가 채우는 빈자리</small><h3>실험 하나 = 샌드박스 하나</h3><p>Airlock은 후보마다 Daytona 샌드박스를 만들어 실행하고 지웁니다. SDK 호출 몇 줄이면 됩니다. 대규모 클러스터 없이 같은 구조의 진화적 탐색을 돌릴 수 있습니다.</p></div>
+</div>
+<footer class="slide-footer"><b>airlock</b><span>배경</span><span class="pageno"></span></footer>
+</section>
+
+<!-- 07 WHAT TO DROP -->
+<section class="slide" data-title="AlphaEvolve와 가장 큰 차이: 무엇을 버리느냐">
+<p class="eyebrow enter">차이 / 05</p>
+<h2 class="enter">AlphaEvolve와 가장 큰 차이는 "무엇을 버리느냐"입니다.</h2>
+<p class="ko enter-late" style="margin-top:12px">가설 A가 실험에서 성적이 나빴습니다. A를 버려야 할까요? 대부분의 오토리서치와 AlphaEvolve는 버립니다(점수 낮은 후보 탈락). ML에서는 이게 틀린 경우가 많습니다. <b>A 혼자는 나빠도, A + B는 좋을 수 있습니다.</b> 아래는 실제 실행 기록입니다.</p>
+<p class="en enter-late">Should a hypothesis that scored badly be dropped? Most auto-research (and AlphaEvolve) drops it. In ML that is often wrong: A alone can be bad while A + B is the best. Real ledger below.</p>
+<div class="evidence enter-late">
+<div class="row"><b>logistic 단독</b><div>0.944 — 단일 모델 8개 중 <span class="bad">3위</span>. 1위는 rf 0.963. 점수 높은 후보만 남기는 방식이라면 여기서 logistic은 탈락.</div></div>
+<div class="row"><b>standardize + logistic</b><div>0.975 (+0.032) → 승격. 여기에 C=0.1 → <span class="good">0.979 = 챔피언</span> (rf보다 +0.016). 3위였던 요인이 조합에서 1위가 됐습니다.</div></div>
+<div class="row"><b>polynomial</b><div>logistic과 조합: <span class="bad">−0.040 (손해)</span>. gb와 조합: <span class="good">+0.011 (유지)</span>. 첫 실패에서 polynomial을 버렸다면 gb의 이득을 놓쳤습니다.</div></div>
+<div class="row"><b>reduction (kbest · pca)</b><div>logistic·gb·rf 각각과 조합해도, standardize 뒤에 붙여도 전부 기준 미달 → <span class="bad">그때서야 봉인</span>. 한 번의 실패로는 봉인하지 않습니다.</div></div>
+</div>
+<div class="conclusion enter-late" style="margin-top:22px">Airlock은 <b>가설 간의 관계를 기록</b>합니다. 요인 단독 / 2개 조합 / 3개 조합의 결과를 따로 두고, 조합이 실패했다는 이유로 요인을 버리지 않으며, 손해가 난 조합만 닫습니다. 그래서 다양한 가설이 계속 살아 있는 채로 최적해에 다가갑니다.</div>
+<footer class="slide-footer"><b>airlock</b><span>차이</span><span class="pageno"></span></footer>
+</section>
+
+<!-- 08 WHAT IT DOES -->
 <section class="slide" data-title="Airlock이 하는 일">
-<p class="eyebrow enter">하는 일 / 02</p>
+<p class="eyebrow enter">제품 / 06</p>
 <h2 class="enter">ML 구조의 조합을 자동으로 실험하고, 규칙에 따라 다음 실험을 고릅니다.</h2>
 <p class="ko enter-late">한 번에 한 요인만 바꿔서 대조군과 비교합니다. 효과가 없다고 증명된 계열은 더 실험하지 않습니다. 비싼 실험 전에만 사람에게 묻습니다.</p>
 <p class="en enter-late">One factor changed per experiment, against a control. Families proven useless are sealed. A person is asked only before an expensive batch.</p>
@@ -178,12 +269,12 @@ html,body{background:#e3563b}
 <div class="op">=</div>
 <div class="cells"><small>탐색 공간</small><b>1,212</b><p>실행 가능한 구조 · 데이터 breast_cancer(+노이즈 20열) · 지표 5-fold 정확도</p></div>
 </div>
-<footer class="slide-footer"><b>airlock</b><span>하는 일</span><span class="pageno"></span></footer>
+<footer class="slide-footer"><b>airlock</b><span>제품</span><span class="pageno"></span></footer>
 </section>
 
-<!-- 04 DAYTONA -->
+<!-- 09 DAYTONA -->
 <section class="slide" data-title="실험 하나마다 Daytona 샌드박스 하나">
-<p class="eyebrow enter">Daytona / 03</p>
+<p class="eyebrow enter">Daytona / 07</p>
 <h2 class="enter">실험 하나마다 Daytona 샌드박스 하나를 씁니다.</h2>
 <p class="ko enter-late">아래는 실제 실행 화면입니다. 첫 라운드의 실험 8개가 샌드박스 8개에서 동시에 시작됐습니다.</p>
 <p class="en enter-late">Real capture: the first round's 8 experiments start at once, in 8 Daytona sandboxes.</p>
@@ -198,9 +289,9 @@ html,body{background:#e3563b}
 <footer class="slide-footer"><b>airlock</b><span>DAYTONA</span><span class="pageno"></span></footer>
 </section>
 
-<!-- 05 RULES -->
+<!-- 10 RULES -->
 <section class="slide" data-title="무엇을 버릴지도 규칙으로 정합니다">
-<p class="eyebrow enter">규칙 / 04</p>
+<p class="eyebrow enter">규칙 / 08</p>
 <h2 class="enter">무엇을 버릴지도 규칙으로 정합니다.</h2>
 <p class="ko enter-late">요인 하나를 버리려면 그 요인 단독 실험이 실패해야 합니다. 조합이 실패했다는 이유로는 버리지 않습니다.</p>
 <p class="en enter-late">A factor is dropped only when it fails on its own. A failed combination never drops the factors inside it.</p>
@@ -217,9 +308,9 @@ html,body{background:#e3563b}
 <footer class="slide-footer"><b>airlock</b><span>규칙</span><span class="pageno"></span></footer>
 </section>
 
-<!-- 06 STAGNATION -->
+<!-- 11 STAGNATION -->
 <section class="slide" data-title="3라운드 개선이 없으면 원인 후보 둘을 세우고 가르는 실험을 고릅니다">
-<p class="eyebrow enter">정체 / 05</p>
+<p class="eyebrow enter">정체 / 09</p>
 <h2 class="enter">3라운드 동안 개선이 없으면, 원인 후보 두 개를 세우고 둘을 가르는 실험을 고릅니다.</h2>
 <p class="ko enter-late">가장 그럴듯한 아이디어가 아니라, 두 설명 중 하나를 틀렸다고 판정할 수 있는 실험 중 가장 싼 것을 먼저 실행합니다.</p>
 <p class="en enter-late">After 3 rounds without improvement: two candidate causes, then the cheapest experiment that rules one of them out.</p>
@@ -237,9 +328,9 @@ html,body{background:#e3563b}
 <footer class="slide-footer"><b>airlock</b><span>정체</span><span class="pageno"></span></footer>
 </section>
 
-<!-- 07 HARM -->
+<!-- 12 HARM -->
 <section class="slide" data-title="좋은 요소 둘을 합치면 나빠질 수 있습니다. 그것도 기록합니다">
-<p class="eyebrow enter">조합 손해 / 06</p>
+<p class="eyebrow enter">조합 손해 / 10</p>
 <h2 class="enter">좋은 요소 둘을 합치면 나빠질 수 있습니다. 그것도 측정해서 기록합니다.</h2>
 <p class="ko enter-late">앙상블 점수가 구성 모델 하나의 점수보다 낮으면 "조합 손해"로 기록하고, 그 조합은 다시 실행하지 않습니다.</p>
 <p class="en enter-late">If an ensemble scores below one of its own members, that combination is recorded as harmful and never run again.</p>
@@ -254,9 +345,9 @@ html,body{background:#e3563b}
 <footer class="slide-footer"><b>airlock</b><span>조합 손해</span><span class="pageno"></span></footer>
 </section>
 
-<!-- 08 ASK -->
+<!-- 13 ASK -->
 <section class="slide" data-title="비싼 실험 전에만 사람에게 묻습니다">
-<p class="eyebrow enter">사람의 결정 / 07</p>
+<p class="eyebrow enter">사람의 결정 / 11</p>
 <h2 class="enter">비싼 실험 전에만 사람에게 묻습니다. 비용과 기본값을 함께 보여줍니다.</h2>
 <p class="ko enter-late">아래는 실제 실행 화면입니다. 사람이 답하지 않으면 정해진 기본값으로 진행하고, 그 사실을 채팅에 남깁니다.</p>
 <p class="en enter-late">Real capture. The agent asks only before an expensive batch, with the cost and the default it will take if nobody answers.</p>
@@ -272,9 +363,9 @@ html,body{background:#e3563b}
 <footer class="slide-footer"><b>airlock</b><span>사람의 결정</span><span class="pageno"></span></footer>
 </section>
 
-<!-- 09 RESULT -->
+<!-- 14 RESULT -->
 <section class="slide" data-title="결과: standardize + logistic (C=0.1) · 0.979">
-<p class="eyebrow enter">결과 / 08</p>
+<p class="eyebrow enter">결과 / 12</p>
 <h2 class="enter">결과: standardize + logistic (C=0.1) · <span class="num">0.979</span></h2>
 <p class="ko enter-late">점수는 5-fold 교차검증으로 측정한 값입니다. 모델이 매긴 점수가 아닙니다.</p>
 <p class="en enter-late">The score is measured 5-fold cross-validation accuracy — never a model's opinion.</p>
@@ -295,7 +386,7 @@ html,body{background:#e3563b}
 <footer class="slide-footer"><b>airlock</b><span>결과</span><span class="pageno"></span></footer>
 </section>
 
-<!-- 10 CLOSING -->
+<!-- 15 CLOSING -->
 <section class="slide closing" data-title="Daytona · Nosana · DNSimple">
 <p class="eyebrow enter">사용한 스폰서 제품</p>
 <h2 class="enter">Daytona · Nosana · DNSimple 위에서 동작합니다.</h2>
@@ -310,7 +401,7 @@ html,body{background:#e3563b}
 </section>
 
 </div></main>
-<footer class="toolbar"><div class="toolbar-help">← → 또는 좌우 가장자리 클릭 · F 전체화면 · P 인쇄</div><div class="toolbar-center"><button class="nav-button" id="prev" aria-label="이전">‹</button><div class="counter"><b id="cur">01</b><span id="tot"> / 10</span></div><div class="progress" id="progress"></div><button class="nav-button" id="next" aria-label="다음">›</button></div><div class="toolbar-help" id="ttitle"></div></footer>
+<footer class="toolbar"><div class="toolbar-help">← → 또는 좌우 가장자리 클릭 · F 전체화면 · P 인쇄</div><div class="toolbar-center"><button class="nav-button" id="prev" aria-label="이전">‹</button><div class="counter"><b id="cur">01</b><span id="tot"> / 15</span></div><div class="progress" id="progress"></div><button class="nav-button" id="next" aria-label="다음">›</button></div><div class="toolbar-help" id="ttitle"></div></footer>
 </div>
 <div class="zone l" id="zl" aria-hidden="true"></div><div class="zone r" id="zr" aria-hidden="true"></div>
 <script>

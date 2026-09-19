@@ -30,9 +30,82 @@ sandboxes; an open model on **Nosana** answers `why` questions from the ledger.
 
 ---
 
+## Why
+
+**1. Development is moving from spec-driven to output-driven.** Spec-driven: write the
+specification first, build it once, and if the result is wrong go back to the spec. Output-driven:
+generate several results first, then choose — possible now because generation is cheap. The
+practical consequence is the current trend: run many agents in parallel, get many outputs fast,
+pick one. (Coding tools now ship this as a default — Cursor 2.0 runs up to eight agents on one
+task at once.)
+
+**2. More outputs make the chooser worse, not better.** In the jam-tasting study (Iyengar &
+Lepper, 2000) a table with 24 jams drew more people than one with 6 (60% vs 40%), but 3% bought
+versus 30%. A hundred agent outputs with no ranking and no evidence are not a choice, they are a
+burden. So: *what if the agent found the best point of agreement itself?* That is possible the
+moment the agent has an evaluation function it can run.
+
+**3. Is more agents always better? No — there is a right amount, and it depends on the task.**
+Evidence for scale: *More Agents Is All You Need* (Li et al., 2024) shows accuracy rising with the
+number of instantiated agents from sampling and voting alone. Evidence against: *Why Do
+Multi-Agent LLM Systems Fail?* (Cemri et al., 2025) classifies real multi-agent failures into 14
+modes, one whole category being inter-agent misalignment — the agents cannot agree. Past a point,
+more agents are noise. Airlock therefore does not fix how many candidates to run or in what
+combination; a single evaluation function measures every round and changes what runs next — an
+evolutionary search whose search policy itself evolves.
+
+**4. The reference point is AlphaEvolve (Google DeepMind, May 2025).** An LLM proposes candidate
+programs, an automated evaluator scores them, only the best survive to the next generation. It
+found a 48-multiplication algorithm for 4×4 complex matrices (the first improvement since
+Strassen's 49 in 1969) and a data-center scheduling heuristic that recovers 0.7% of Google's
+compute. It also presupposes large-scale execution infrastructure — thousands of candidates must
+actually run — and is available only through limited access. **Daytona fills exactly that gap**:
+one experiment = one sandbox, a few SDK calls, no cluster.
+
+**5. The biggest difference from AlphaEvolve is what gets dropped.** Hypothesis A scored badly in
+an experiment. Should A be dropped? Most auto-research loops, AlphaEvolve included, drop it — the
+low-scoring candidate is out. In ML that is often wrong: A alone can be bad while A + B is the best
+structure in the space. From the real ledger of the run above:
+
+| Factor | Alone | In combination |
+| --- | --- | --- |
+| `logistic` | 0.944 — **3rd of 8** single models (`rf` 0.963 was 1st). A keep-the-best search drops it here. | `standardize + logistic` 0.975 (+0.032) → promoted; `+ C=0.1` → **0.979, the champion** (+0.016 over `rf`). |
+| `polynomial` | — | with `logistic`: **−0.040 (harm)**; with `gb`: **+0.011 (kept)**. Dropping it after the first failure loses the `gb` gain. |
+| `reduction` (`kbest`, `pca`) | below the bar with `logistic`, `gb` and `rf` | still below the bar after `standardize` → **sealed only then**, never after one miss. |
+
+Airlock records the relationships between hypotheses: isolated-factor, pair and triple evidence
+are kept separately; a failed combination never drops the factors inside it; a harmful
+combination closes only that combination. Many hypotheses stay alive while the search approaches
+the optimum — that is the product.
+
+<details>
+<summary>한국어</summary>
+
+1. **스펙 드리븐 → 아웃풋 드리븐.** 먼저 명세를 쓰고 한 번 만드는 방식에서, 결과물을 여러 개 만들고 고르는
+   방식으로 바뀌고 있습니다. 그래서 에이전트를 병렬로 많이 돌려 결과물을 빨리 만들고 그중 하나를 고르는 것이
+   지금의 추세입니다.
+2. **결과물이 많아질수록 고르는 사람이 힘들어집니다.** 잼 24종 vs 6종: 사람은 더 모이지만(60% vs 40%) 구매는
+   3% vs 30% (Iyengar & Lepper, 2000). 그렇다면 에이전트가 최적의 합의점까지 대신 찾아주면 어떨까요?
+   에이전트가 쓸 수 있는 평가 함수가 있으면 가능합니다.
+3. **에이전트가 많을수록 무조건 좋은가? 아닙니다.** 많을수록 좋다는 근거(Li et al., 2024)와 많으면
+   합의를 못 하고 노이즈가 된다는 근거(Cemri et al., 2025)가 둘 다 있습니다. 적정선은 태스크마다 다르므로,
+   Airlock은 평가 함수 하나로 매 라운드 측정하며 다음에 무엇을 돌릴지 스스로 바꿉니다(진화적 탐색).
+4. **AlphaEvolve(Google DeepMind, 2025.5)** 가 이 방향의 대표입니다. LLM이 후보를 제안하고, 평가 함수가
+   점수를 매기고, 상위만 다음 세대로 남깁니다. 대규모 실행 인프라가 전제이고 제한된 접근입니다.
+   **Daytona가 이 빈자리를 채웁니다**: 실험 하나 = 샌드박스 하나.
+5. **가장 큰 차이는 "무엇을 버리느냐"입니다.** 가설 A가 성적이 나빴다고 A를 버려야 할까요? 대부분의
+   오토리서치와 AlphaEvolve는 버립니다. ML에서는 A 혼자는 나빠도 A + B는 좋을 수 있습니다. 실제 기록:
+   `logistic` 단독은 8개 중 3위(0.944)였지만 `standardize + logistic (C=0.1)` 은 챔피언(0.979)이 됐고,
+   `polynomial` 은 `logistic` 과는 −0.040 손해였지만 `gb` 와는 +0.011 이득이었습니다. Airlock은 가설 간
+   관계를 기록하고, 조합 실패로는 요인을 버리지 않으며, 손해가 난 조합만 닫습니다.
+
+</details>
+
+---
+
 ## Demo
 
-Pitch deck (10 slides, opens in any browser): [`demo/airlock-pitch.html`](demo/airlock-pitch.html).
+Pitch deck (15 slides, opens in any browser): [`demo/airlock-pitch.html`](demo/airlock-pitch.html).
 
 ![Airlock demo](demo/v3/airlock-demo.gif)
 
