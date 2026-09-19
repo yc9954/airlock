@@ -1,0 +1,7 @@
+# Airlock's server is Python 3.10+ standard library (ThreadingHTTPServer + SSE, no framework).
+# The research engine measures every candidate with scikit-learn.
+numpy>=1.26
+scikit-learn>=1.4
+
+# Optional — experiments run in a pool of Daytona sandboxes when DAYTONA_API_KEY is set.
+daytona>=0.214.0

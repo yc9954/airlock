@@ -1,0 +1,12 @@
+Airlock — third-party notices
+
+Design tokens (web/src/tokens.css) are adapted verbatim from Rakazo
+  https://github.com/elie222/rakazo — packages/ui-tokens/src/tokens.css
+  Copyright (c) Rakazo contributors. Licensed under the Apache License, Version 2.0.
+  http://www.apache.org/licenses/LICENSE-2.0
+The visual language of the chat surface (three-pane shell, message bubbles, result
+and ask cards, bot avatars) follows Rakazo's public design; components in this
+repository are original implementations. No Rakazo application code is bundled.
+
+Daytona Python SDK — https://github.com/daytonaio/daytona (used as an optional
+sandbox provider via airlock/sandbox.py).

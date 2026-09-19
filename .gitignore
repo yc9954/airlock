@@ -1,0 +1,18 @@
+.env
+runs/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+web/node_modules/
+web/dist/
+web-legacy/
+
+# internal / superseded assets kept out of the public repo
+HANDOFF.md
+design/reference/
+demo/shots/
+demo/airlock-deck.html
+demo/airlock-demo.gif
+design/

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Airlock | Pitch</title><style>:root { --paper: #f6f3eb; --ink: #242621; --muted: #70736a; --red: #d74732; --line: #d6d4c9; --dark: #242922; --acid: #d5e2a3; --s: 1; --font: "Avenir Next","Apple SD Gothic Neo","Malgun Gothic",sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0px; background: rgb(231, 231, 223); color: var(--ink); font-family: var(--font); -webkit-font-smoothing: antialiased; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { font: inherit; cursor: pointer; }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--red); outline-offset: 5px; }
+button:disabled { opacity: 0.28; cursor: default; }
+.shell { height: 100dvh; display: grid; grid-template-rows: 54px 1fr 64px; }
+.app-header { display: flex; align-items: center; justify-content: space-between; padding: 0px 30px; border-bottom: 1px solid rgb(209, 211, 200); }
+.app-wordmark { font-size: 24px; font-weight: 800; letter-spacing: -1.6px; }
+.app-wordmark span { color: var(--red); }
+.app-label { font-size: 11px; letter-spacing: 2px; color: rgb(96, 100, 87); }
+.viewport { display: flex; align-items: center; justify-content: center; min-height: 0px; overflow: hidden; padding: 8px 24px; }
+.stage { position: relative; width: calc(1440px * var(--s)); height: calc(900px * var(--s)); box-shadow: rgba(38, 41, 28, 0.07) 0px 12px 45px; }
+.slide { display: none; position: absolute; inset: 0px auto auto 0px; width: 1440px; height: 900px; transform: scale(var(--s)); transform-origin: left top; overflow: hidden; padding: 66px 82px 70px; background: radial-gradient(ellipse at 85% 10%,#fff9 0%,transparent 65%),var(--paper); flex-direction: column; }
+.slide.is-active { display: flex; }
+.slide[hidden] { display: none; }
+.slide.is-active .enter { animation: 0.38s ease 0s 1 normal both running arrive; }
+.slide.is-active .enter-late { animation: 0.48s ease 0.07s 1 normal both running arrive; }
+@keyframes arrive { 0% { opacity: 0; translate: 0px 12px; } 100% { opacity: 1; translate: 0px; } }
+.eyebrow { font-size: 17px; font-weight: 650; letter-spacing: 2.4px; text-transform: uppercase; margin: 0px 0px 24px; display: flex; align-items: center; gap: 18px; }
+.eyebrow::before { content: ""; width: 29px; height: 2px; background: var(--red); }
+h1, h2, h3, p { margin: 0px; }
+h2 { font-size: 62px; line-height: 1.18; letter-spacing: -2.8px; font-weight: 750; word-break: keep-all; text-wrap: balance; }
+h3 { font-size: 31px; letter-spacing: -1px; line-height: 1.35; }
+.ko { font-size: 24px; line-height: 1.5; letter-spacing: -0.5px; word-break: keep-all; margin-top: 16px; max-width: 1080px; }
+.lede { font-size: 26px; line-height: 1.6; letter-spacing: -0.5px; word-break: keep-all; color: rgb(99, 103, 92); margin-top: 24px; }
+.accent { color: var(--red); }
+.fine { font-size: 18px; line-height: 1.65; word-break: keep-all; color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+.slide-footer { position: absolute; bottom: 27px; left: 82px; right: 82px; border-top: 1px solid var(--line); padding-top: 16px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; letter-spacing: 1.5px; color: var(--muted); }
+.slide-footer b { color: inherit; font-size: 16px; letter-spacing: -0.5px; }
+/* cover */
+.cover { padding-top: 70px; }
+.cover h1 { font-size: 96px; letter-spacing: -5.5px; line-height: 1.08; margin-top: 8px; word-break: keep-all; max-width: 1000px; font-weight: 750; }
+.cover .ko { font-size: 28px; margin-top: 26px; max-width: 900px; }
+.hero-figure { position: absolute; right: 96px; top: 132px; transform: rotate(5deg); width: 250px; margin: 0px; }
+.hero-figure svg { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
+.stat-row { display: flex; gap: 0; margin-top: 64px; border-top: 1px solid var(--line); padding-top: 26px; }
+.stat { flex: 1; padding-right: 28px; }
+.stat + .stat { border-left: 1px solid var(--line); padding-left: 28px; }
+.stat b { display: block; font-size: 60px; font-weight: 700; letter-spacing: -3px; line-height: 1; font-variant-numeric: tabular-nums; }
+.stat span { display: block; margin-top: 12px; font-size: 15px; letter-spacing: 1.6px; text-transform: uppercase; }
+/* three-way comparison */
+.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; margin-top: 54px; }
+.three .col { border-top: 1px solid var(--line); padding-top: 22px; min-height: 420px; }
+.three .col.win { background: #fff1d6; color: #211f19; border-top: 0; border-radius: 16px; padding: 30px 32px; }
+.three small { font-size: 16px; letter-spacing: 1.6px; text-transform: uppercase; font-weight: 650; }
+.three .big { font-size: 118px; font-weight: 750; letter-spacing: -7px; line-height: 1; margin-top: 22px; font-variant-numeric: tabular-nums; }
+.three .unit { font-size: 22px; letter-spacing: -0.3px; margin-top: 10px; }
+.three h3 { margin-top: 30px; font-size: 30px; }
+.three p { margin-top: 12px; font-size: 21px; line-height: 1.5; word-break: keep-all; }
+/* composition space */
+.space { display: flex; align-items: center; gap: 18px; margin-top: 52px; }
+.space .fam { flex: 1; border: 2px solid #211f19; border-radius: 14px; padding: 22px 24px; min-height: 172px; }
+.space .fam small { display: block; font-size: 15px; letter-spacing: 1.6px; text-transform: uppercase; font-weight: 650; }
+.space .fam b { display: block; font-size: 34px; letter-spacing: -1.4px; margin-top: 8px; }
+.space .fam p { margin-top: 10px; font-size: 18px; line-height: 1.45; color: #4b2c21; word-break: keep-all; }
+.space .op { font-size: 48px; font-weight: 300; }
+.space .cells { flex: 1.15; background: #211f19; color: #fff1d6; border-radius: 14px; padding: 22px 26px; min-height: 172px; }
+.space .cells b { display: block; font-size: 64px; letter-spacing: -3.5px; line-height: 1; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.space .cells small { display: block; font-size: 15px; letter-spacing: 1.6px; text-transform: uppercase; color: #f0c9a6; }
+.space .cells p { margin-top: 10px; font-size: 18px; line-height: 1.45; color: #f0c9a6; }
+/* browser-frame mockup for real screenshots */
+.frame { background: #211f19; border: 1px solid rgba(255,241,214,.22); border-radius: 12px; padding: 7px; box-shadow: 0 22px 60px rgba(60, 14, 6, .32); }
+.frame .bar { height: 20px; display: flex; align-items: center; gap: 6px; padding: 0 6px 4px; }
+.frame .bar i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,241,214,.28); }
+.frame .bar span { margin-left: 10px; font-size: 11px; letter-spacing: .5px; color: rgba(255,241,214,.45); font-family: ui-monospace, Menlo, monospace; }
+.frame .shot { aspect-ratio: 1440 / 745; overflow: hidden; border-radius: 6px; background: #0b0c0e; }
+.frame .shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.shot-layout { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 46px; margin-top: 34px; align-items: start; }
+.shot-layout.wide { grid-template-columns: 1fr 1fr; gap: 30px; }
+.bullets { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.bullets li { padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 22px; line-height: 1.45; letter-spacing: -0.4px; word-break: keep-all; }
+.bullets li b { font-weight: 700; }
+.bullets li small { display: block; font-size: 15px; letter-spacing: 1.4px; text-transform: uppercase; color: #44291f; margin-bottom: 6px; font-weight: 650; }
+.rule-card { background: #fff1d6; color: #211f19; border-radius: 16px; padding: 22px 26px; margin-top: 18px; }
+.rule-card small { display: block; font-size: 15px; letter-spacing: 1.6px; text-transform: uppercase; font-weight: 650; color: #b84632; }
+.rule-card p { margin-top: 8px; font-size: 24px; line-height: 1.4; letter-spacing: -0.5px; font-weight: 600; word-break: keep-all; }
+.chain { display: flex; align-items: stretch; gap: 14px; margin-top: 22px; }
+.chain .step { flex: 1; border: 2px solid #211f19; border-radius: 14px; padding: 18px 20px; font-size: 19px; line-height: 1.4; word-break: keep-all; }
+.chain .step small { display: block; font-size: 14px; letter-spacing: 1.4px; text-transform: uppercase; font-weight: 650; margin-bottom: 6px; color: #44291f; }
+.chain .arrow { align-self: center; font-size: 30px; }
+.chain .step.out { background: #211f19; color: #fff1d6; border-color: #211f19; }
+.chain .step.out small { color: #f0c9a6; }
+.champ-stats { display: flex; gap: 0; margin-top: 8px; border-top: 1px solid var(--line); }
+.champ-stats div { flex: 1; padding: 20px 22px 20px 0; }
+.champ-stats div + div { border-left: 1px solid var(--line); padding-left: 22px; }
+.champ-stats b { display: block; font-size: 44px; letter-spacing: -2.2px; line-height: 1; font-variant-numeric: tabular-nums; }
+.champ-stats span { display: block; margin-top: 10px; font-size: 14px; letter-spacing: 1.5px; text-transform: uppercase; }
+.honest { margin-top: 20px; border-left: 3px solid #211f19; padding-left: 18px; font-size: 21px; line-height: 1.5; word-break: keep-all; }
+/* closing */
+.closing { justify-content: flex-start; padding-top: 66px; }
+.closing h2 { font-size: 64px; }
+.stack { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 46px; }
+.stack .item { border-top: 2px solid #211f19; padding-top: 20px; }
+.stack .item b { display: block; font-size: 38px; letter-spacing: -1.8px; }
+.stack .item small { display: block; font-size: 15px; letter-spacing: 1.6px; text-transform: uppercase; margin-top: 6px; color: #44291f; font-weight: 650; }
+.stack .item p { margin-top: 14px; font-size: 21px; line-height: 1.5; color: #4b2c21; word-break: keep-all; }
+.repo { margin-top: 48px; display: flex; align-items: center; gap: 24px; font-size: 26px; letter-spacing: -0.4px; }
+.repo code { font-family: ui-monospace, Menlo, monospace; font-size: 26px; background: #fff1d6; color: #211f19; padding: 8px 16px; border-radius: 10px; }
+.last-line { position: absolute; left: 82px; bottom: 96px; font-size: 54px; font-weight: 750; letter-spacing: -2.8px; line-height: 1.1; }
+.toolbar { display: flex; align-items: center; justify-content: space-between; padding: 0px 29px; gap: 20px; }
+.toolbar-help { color: rgb(115, 119, 104); font-size: 12px; letter-spacing: 0.3px; }
+.toolbar-center { display: flex; align-items: center; gap: 16px; }
+.nav-button { width: 34px; height: 34px; display: grid; place-items: center; background: transparent; border: 1px solid rgb(191, 197, 178); border-radius: 50%; color: rgb(54, 62, 46); font-size: 22px; line-height: 1; }
+.nav-button:not(:disabled):hover { background: rgb(214, 220, 202); }
+.counter { font-variant-numeric: tabular-nums; font-size: 13px; letter-spacing: 1.2px; min-width: 71px; text-align: center; }
+.counter span { color: rgb(124, 131, 113); }
+.progress { display: flex; gap: 5px; }
+.progress button { border: 0px; padding: 7px 0px; background: none; width: 17px; }
+.progress button::after { content: ""; display: block; height: 3px; background: rgb(195, 201, 183); transition: background 0.2s; }
+.progress button[aria-current="step"]::after { background: var(--red); }
+.progress button:hover::after { background: rgb(130, 143, 110); }
+.zone { position: absolute; top: 54px; bottom: 64px; width: 22%; z-index: 5; cursor: pointer; }
+.zone.l { left: 0; } .zone.r { right: 0; }
+@media (prefers-reduced-motion: reduce) { *, ::before, ::after { animation: none !important; transition: none !important; } }
+@media print { @page { size: 1440px 900px; margin: 0px; } html, body { background: white; width: 1440px; height: auto; } .shell { height: auto; display: block; } .app-header, .toolbar, .zone { display: none !important; } .viewport { display: block; overflow: visible; padding: 0px; } .stage { box-shadow: none; width: 1440px !important; height: auto !important; } .slide, .slide[hidden] { position: relative; inset: auto; min-height: 0px; overflow: hidden; break-after: page; print-color-adjust: exact; display: flex !important; transform: none !important; width: 1440px !important; height: 900px !important; } .slide:last-child { break-after: auto; } .slide * { animation: none !important; } .slide-footer { position: absolute; } .hero-figure { position: absolute; } }
+</style><style id="helix-coral-theme">
+html,body{background:#e3563b}
+.slide{--paper:#fff1d6;--ink:#211f19;--red:#fff1d6;--acid:#fff1d6;--line:#b84632;--muted:#623224;background:radial-gradient(ellipse at 85% 0%,#ef7256 0%,transparent 68%),#e3563b;color:#211f19}
+.slide .eyebrow::before{background:#211f19}
+.slide .accent{color:#fff1d6}
+.slide .lede,.slide .fine{color:#4b2c21}
+.slide .ko{color:#3d2419}
+.slide .slide-footer{color:#623224}
+.slide .hero-figure{mix-blend-mode:multiply}
+.app-header{background:#fff1d6;border-bottom-color:#e0c9a7}
+.toolbar{background:#fff1d6}
+</style></head>
+<body>
+<div class="shell">
+<header class="app-header"><div class="app-wordmark">air<span>lock</span>.</div><div class="app-label" id="hlabel">DAYTONA HACKSPRINT SEOUL · PITCH</div><div class="app-label">← → MOVE · F FULLSCREEN</div></header>
+<main class="viewport"><div class="stage" id="stage">
+
+<!-- 01 HOOK -->
+<section class="slide cover is-active" data-title="Generation is free. Judgment isn't.">
+<p class="eyebrow enter">Airlock · Daytona HackSprint Seoul</p>
+<h1 class="enter">Generation is free.<br><span class="accent">Judgment isn't.</span></h1>
+<p class="ko enter-late">생성은 공짜가 됐습니다. 이제 비싼 건 <b>판단</b>입니다 — 그래서 AI가 판단을 낭비하지 않게 골라줘야 합니다.</p>
+<figure class="hero-figure enter-late" aria-hidden="true"><svg viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg"><rect x="18" y="8" width="164" height="264" rx="18" fill="#211f19"/><circle cx="100" cy="140" r="86" fill="none" stroke="#fff1d6" stroke-width="10"/><circle cx="100" cy="140" r="58" fill="none" stroke="#fff1d6" stroke-width="6" stroke-dasharray="22 14"/><circle cx="100" cy="140" r="30" fill="#e3563b"/><path d="M100 60 L100 220" stroke="#fff1d6" stroke-width="6" opacity=".55"/><path d="M40 140 L160 140" stroke="#fff1d6" stroke-width="6" opacity=".55"/><path d="M100 140 L146 96" stroke="#fff1d6" stroke-width="8" stroke-linecap="round"/></svg></figure>
+<div class="stat-row enter-late">
+<div class="stat"><b>1,212</b><span>Structures in the space</span></div>
+<div class="stat"><b>37</b><span>Evals actually run</span></div>
+<div class="stat"><b>37.8 s</b><span>Wall clock · one real run</span></div>
+<div class="stat"><b>+0.013</b><span>Champion over best single model</span></div>
+</div>
+<footer class="slide-footer"><b>airlock</b><span>SELECTION PRESSURE, NOT AGENT SPAM.</span><span class="pageno"></span></footer>
+</section>
+
+<!-- 02 THE PROBLEM IN ONE PICTURE -->
+<section class="slide" data-title="Three ways to search 1,212 structures">
+<p class="eyebrow enter">The problem / 01</p>
+<h2 class="enter">Three ways to search 1,212 structures.</h2>
+<p class="ko enter-late">다 돌리거나, 답 100개를 사람에게 떠넘기거나 — 둘 다 판단을 낭비합니다.</p>
+<div class="three enter-late">
+<div class="col"><small>Grid search</small><div class="big">1,212</div><div class="unit">evals</div><h3>Brute force</h3><p>Every cell, every time. Correct, and unaffordable the moment the catalog grows.</p></div>
+<div class="col"><small>Agent spam</small><div class="big">100</div><div class="unit">answers, unranked</div><h3>You choose</h3><p>100 agents, 100 confident results. The judgment moved back to the human — now with more noise.</p></div>
+<div class="col win"><small>Airlock</small><div class="big">37</div><div class="unit">evals · 1 champion</div><h3>Asked you once</h3><p>Measured every candidate, sealed dead families, and interrupted a human exactly one time — with a price tag.</p></div>
+</div>
+<footer class="slide-footer"><b>airlock</b><span>THE PROBLEM</span><span class="pageno"></span></footer>
+</section>
+
+<!-- 03 WHAT AIRLOCK IS -->
+<section class="slide" data-title="An auto-research agent for composite structures">
+<p class="eyebrow enter">What it is / 02</p>
+<h2 class="enter">An auto-research agent for composite ML structures.</h2>
+<p class="lede enter-late" style="max-width:1180px;margin-top:18px">It searches the way a good lab does: <b>cheapest falsifier first</b>, <b>seal what's dead</b>, and <b>ask a human only when it's worth their time</b>.</p>
+<p class="ko enter-late" style="margin-top:12px">가장 싼 반증부터, 죽은 가족은 봉인, 사람에겐 필요할 때만.</p>
+<div class="space enter-late">
+<div class="fam"><small>Family 1</small><b>transform</b><p>none · standardize · robust · polynomial · PCA · k-best</p></div>
+<div class="op">×</div>
+<div class="fam"><small>Family 2</small><b>model</b><p>logistic · linear SVM · kNN · tree · random forest · GB</p></div>
+<div class="op">×</div>
+<div class="fam"><small>Family 3</small><b>ensemble</b><p>voting · bagging · stacking (over the models)</p></div>
+<div class="op">×</div>
+<div class="fam"><small>Family 4</small><b>hyper</b><p>C · depth · k · learning rate — per model</p></div>
+<div class="op">=</div>
+<div class="cells"><small>Composition space</small><b>1,212</b><p>legal structures on breast_cancer · 5-fold accuracy</p></div>
+</div>
+<footer class="slide-footer"><b>airlock</b><span>WHAT IT IS</span><span class="pageno"></span></footer>
+</section>
+
+<!-- 04 DAYTONA FAN-OUT -->
+<section class="slide" data-title="Every hypothesis runs in its own Daytona sandbox">
+<p class="eyebrow enter">Daytona / 03</p>
+<h2 class="enter">Every hypothesis runs in its own Daytona sandbox.</h2>
+<p class="ko enter-late">가설 하나 = 샌드박스 하나. 병렬로 뜨고, 끝나면 사라집니다.</p>
+<div class="shot-layout enter-late">
+<div class="frame"><div class="bar"><i></i><i></i><i></i><span>127.0.0.1:8770 · lab b0f8940f5f</span></div><div class="shot"><img src="v3/02-hypotheses-daytona-fanout.jpg" alt="Airlock chat: hypotheses fanned out to Daytona sandboxes"></div></div>
+<ul class="bullets">
+<li><small>Parallel fan-out</small>Each round's hypotheses launch together; a batch of 8 finishes in the time one would take.</li>
+<li><small>Official SDK</small>Daytona Python SDK: <b>create → upload → exec → delete</b>. No custom REST, no lingering sandboxes.</li>
+<li><small>Visible while it runs</small>Sandbox ids and elapsed time live in the right panel; the ledger keeps the sandbox id per result.</li>
+</ul>
+</div>
+<footer class="slide-footer"><b>airlock</b><span>DAYTONA</span><span class="pageno"></span></footer>
+</section>
+
+<!-- 05 DISCIPLINE, NOT VIBES -->
+<section class="slide" data-title="Discipline, not vibes">
+<p class="eyebrow enter">Rules / 04</p>
+<h2 class="enter">Discipline, not vibes.</h2>
+<p class="ko enter-late">감이 아니라 규칙. 무엇을 버릴지에도 증거 기준이 있습니다.</p>
+<div class="shot-layout wide enter-late">
+<div>
+<div class="frame"><div class="bar"><i></i><i></i><i></i><span>recipe miss · factor stays open</span></div><div class="shot"><img src="v3/04-recipe-miss-does-not-close-factors.jpg" alt="A failed recipe does not close its isolated factors"></div></div>
+<div class="rule-card"><small>Rule 01</small><p>A recipe miss never closes an isolated factor.</p></div>
+</div>
+<div>
+<div class="frame"><div class="bar"><i></i><i></i><i></i><span>family sealed · iso + pair + triple</span></div><div class="shot"><img src="v3/05-family-sealed.jpg" alt="A family is sealed after isolated, pair and triple evidence"></div></div>
+<div class="rule-card"><small>Rule 02</small><p>A family is sealed only after isolated + pair + triple all miss the bar.</p></div>
+</div>
+</div>
+<footer class="slide-footer"><b>airlock</b><span>RULES</span><span class="pageno"></span></footer>
+</section>
+
+<!-- 06 STAGNATION -->
+<section class="slide" data-title="When it stalls, it argues with itself">
+<p class="eyebrow enter">Stagnation / 05</p>
+<h2 class="enter">When it stalls, it argues with itself.</h2>
+<p class="ko enter-late">정체되면 스스로에게 반론을 냅니다. 둘 중 하나만 살아남는 실험을 고릅니다.</p>
+<div class="shot-layout enter-late">
+<div class="frame"><div class="bar"><i></i><i></i><i></i><span>why-critique · 3 stalled rounds</span></div><div class="shot"><img src="v3/07-stagnation-why-critique.jpg" alt="Stagnation card with two competing explanations"></div></div>
+<div>
+<div class="chain" style="flex-direction:column;gap:12px;margin-top:0">
+<div class="step"><small>Explanation A</small>Local optimum — the champion's neighbourhood is flat.</div>
+<div class="step"><small>Explanation B</small>Family tax — one family is dragging every composite down.</div>
+<div class="step"><small>Separating observation</small>One experiment whose result is different under A than under B.</div>
+<div class="step out"><small>Next run</small>The cheapest falsifier — never the most exciting idea.</div>
+</div>
+</div>
+</div>
+<footer class="slide-footer"><b>airlock</b><span>STAGNATION</span><span class="pageno"></span></footer>
+</section>
+
+<!-- 07 SUPERADDITIVE HARM -->
+<section class="slide" data-title="Composites can hurt. Airlock measures that.">
+<p class="eyebrow enter">Non-additivity / 06</p>
+<h2 class="enter">Composites can hurt. Airlock measures that.</h2>
+<p class="ko enter-late">좋은 것 둘을 합치면 나빠질 수 있습니다. 그것도 결과로 기록합니다.</p>
+<div class="shot-layout enter-late">
+<div class="frame"><div class="bar"><i></i><i></i><i></i><span>superadditive harm · recorded</span></div><div class="shot"><img src="v3/09-superadditive-harm.jpg" alt="Superadditive harm card: a composite below both of its parts"></div></div>
+<ul class="bullets">
+<li><small>First-class result</small><b class="num">1 + 1 &lt; 2</b> is a gate outcome, not an error. The pair gets a name and a reason.</li>
+<li><small>In the real run</small><b class="num">8</b> harmful composites caught out of 37 evals. Each one closes a combination, not a factor.</li>
+<li><small>Never retried silently</small>Harms live in the ledger with both parents' scores, so the next round can't rediscover them.</li>
+</ul>
+</div>
+<footer class="slide-footer"><b>airlock</b><span>NON-ADDITIVITY</span><span class="pageno"></span></footer>
+</section>
+
+<!-- 08 THE ASK -->
+<section class="slide" data-title="It asks you once, with a price tag">
+<p class="eyebrow enter">Human in the loop / 07</p>
+<h2 class="enter">It asks you once, with a price tag.</h2>
+<p class="ko enter-late">사람의 시간이 아까울 때만, 가격표를 붙여서 딱 한 번 묻습니다.</p>
+<div class="shot-layout enter-late">
+<div class="frame"><div class="bar"><i></i><i></i><i></i><span>ask · needs you</span></div><div class="shot"><img src="v3/10-ask-needs-you.jpg" alt="Ask card: run 8 ensemble recipes? with cost estimate and one-click options"></div></div>
+<ul class="bullets">
+<li><small>The question</small>"Run 8 bagging / stacking / voting recipes?"</li>
+<li><small>The price</small><b class="num">8 evals · ~8 s</b> on the current pool — estimated before you answer.</li>
+<li><small>The default</small>If you're away, it takes the declared default and says so in the chat.</li>
+<li><small>The answer</small>One click: <b>Run</b> or <b>Skip</b>. Skipped specs are recorded as declined, not discarded.</li>
+</ul>
+</div>
+<footer class="slide-footer"><b>airlock</b><span>HUMAN IN THE LOOP</span><span class="pageno"></span></footer>
+</section>
+
+<!-- 09 CHAMPION -->
+<section class="slide" data-title="Champion: standardize + logistic (C=0.1) · 0.976">
+<p class="eyebrow enter">Result / 08</p>
+<h2 class="enter">Champion: standardize + logistic (C=0.1) · <span class="num">0.976</span></h2>
+<p class="ko enter-late">점수는 5-fold 교차검증 측정값입니다. 모델의 의견이 아니라.</p>
+<div class="shot-layout enter-late">
+<div class="frame"><div class="bar"><i></i><i></i><i></i><span>champion · lab done</span></div><div class="shot"><img src="v3/13-champion.jpg" alt="Champion card in the Airlock chat with the fitness chart"></div></div>
+<div>
+<div class="champ-stats">
+<div><b>+0.013</b><span>Over best single (rf 0.963)</span></div>
+<div><b>37</b><span>Evals used</span></div>
+</div>
+<div class="champ-stats" style="border-top:1px solid var(--line)">
+<div><b>1,212</b><span>Grid would need</span></div>
+<div><b>37.8 s</b><span>Start to champion</span></div>
+</div>
+<div class="honest">Metric is <b>measured</b> 5-fold CV on held-out folds. No model ever assigns a score; the open model only narrates and answers <i>why</i>.</div>
+</div>
+</div>
+<footer class="slide-footer"><b>airlock</b><span>RESULT</span><span class="pageno"></span></footer>
+</section>
+
+<!-- 10 CLOSING -->
+<section class="slide closing" data-title="Selection pressure, not agent spam">
+<p class="eyebrow enter">Built on</p>
+<h2 class="enter">Daytona · Nosana · DNSimple</h2>
+<div class="stack enter-late">
+<div class="item"><b>Daytona</b><small>Execution</small><p>Every experiment is a sandbox. Create, upload, exec, delete — via the official SDK, in parallel.</p></div>
+<div class="item"><b>Nosana</b><small>Open model</small><p>A Nosana-hosted open model answers <i>why</i> from the ledger and writes the closing note. It never scores.</p></div>
+<div class="item"><b>DNSimple</b><small>Publish</small><p>A finished lab's report goes to a subdomain, so the champion and its evidence have a URL.</p></div>
+</div>
+<div class="repo enter-late"><span>Code, video, README:</span><code>github.com/yc9954/airlock</code></div>
+<div class="last-line enter-late">Selection pressure,<br>not agent spam.</div>
+<footer class="slide-footer"><b>airlock</b><span>SELECTION PRESSURE, NOT AGENT SPAM.</span><span class="pageno"></span></footer>
+</section>
+
+</div></main>
+<footer class="toolbar"><div class="toolbar-help">← → or click the left / right edge · F fullscreen · P print</div><div class="toolbar-center"><button class="nav-button" id="prev" aria-label="Previous">‹</button><div class="counter"><b id="cur">01</b><span id="tot"> / 10</span></div><div class="progress" id="progress"></div><button class="nav-button" id="next" aria-label="Next">›</button></div><div class="toolbar-help" id="ttitle"></div></footer>
+</div>
+<div class="zone l" id="zl" aria-hidden="true"></div><div class="zone r" id="zr" aria-hidden="true"></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];const prog=document.getElementById('progress');let i=0;
+slides.forEach((s,n)=>{const b=document.createElement('button');b.setAttribute('aria-label',(n+1)+' '+(s.dataset.title||''));b.onclick=()=>go(n);prog.appendChild(b);});
+const dots=[...prog.children];
+function go(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,k)=>s.classList.toggle('is-active',k===i));dots.forEach((d,k)=>{if(k===i)d.setAttribute('aria-current','step');else d.removeAttribute('aria-current');});document.getElementById('cur').textContent=String(i+1).padStart(2,'0');document.getElementById('ttitle').textContent=slides[i].dataset.title||'';document.getElementById('prev').disabled=i===0;document.getElementById('next').disabled=i===slides.length-1;}
+function scale(){const s=Math.min((innerWidth-48)/1440,(innerHeight-54-64-16)/900);document.documentElement.style.setProperty('--s',s);}
+addEventListener('resize',scale);scale();
+document.getElementById('next').onclick=()=>go(i+1);document.getElementById('prev').onclick=()=>go(i-1);
+document.getElementById('zr').onclick=()=>go(i+1);document.getElementById('zl').onclick=()=>go(i-1);
+addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')go(i+1);else if(e.key==='ArrowLeft'||e.key==='PageUp')go(i-1);else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}else if(e.key==='p'||e.key==='P'){print();}});
+slides.forEach((sl,k)=>{const el=sl.querySelector('.pageno');if(el)el.textContent=String(k+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');});document.getElementById('tot').textContent=' / '+slides.length;
+go(0);
+</script>
+</body></html>
