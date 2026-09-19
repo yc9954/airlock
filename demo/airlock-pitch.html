@@ -69,7 +69,7 @@ h3 { font-size: 31px; letter-spacing: -1px; line-height: 1.35; }
 .jam span { display: block; margin-top: 12px; font-size: 18px; word-break: keep-all; line-height: 1.45; }
 /* evidence table */
 .evidence { margin-top: 26px; border-top: 2px solid #211f19; }
-.evidence .row { display: grid; grid-template-columns: 260px 1fr; gap: 24px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 20px; line-height: 1.45; word-break: keep-all; }
+.evidence .row { display: grid; grid-template-columns: 260px 1fr; gap: 24px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 20px; line-height: 1.45; word-break: keep-all; }
 .evidence .row b { font-family: ui-monospace, Menlo, monospace; font-size: 18px; letter-spacing: -0.3px; }
 .evidence .row .bad { color: #7a1f0f; font-weight: 700; }
 .evidence .row .good { color: #211f19; font-weight: 700; background: #fff1d6; padding: 0 6px; border-radius: 6px; }
@@ -248,7 +248,7 @@ html,body{background:#e3563b}
 <div class="row"><b>polynomial</b><div>logistic과 조합: <span class="bad">−0.040 (손해)</span>. gb와 조합: <span class="good">+0.011 (유지)</span>. 첫 실패에서 polynomial을 버렸다면 gb의 이득을 놓쳤습니다.</div></div>
 <div class="row"><b>reduction (kbest · pca)</b><div>logistic·gb·rf 각각과 조합해도, standardize 뒤에 붙여도 전부 기준 미달 → <span class="bad">그때서야 봉인</span>. 한 번의 실패로는 봉인하지 않습니다.</div></div>
 </div>
-<div class="conclusion enter-late" style="margin-top:22px">Airlock은 <b>가설 간의 관계를 기록</b>합니다. 요인 단독 / 2개 조합 / 3개 조합의 결과를 따로 두고, 조합이 실패했다는 이유로 요인을 버리지 않으며, 손해가 난 조합만 닫습니다. 그래서 다양한 가설이 계속 살아 있는 채로 최적해에 다가갑니다.</div>
+<div class="conclusion enter-late" style="margin-top:14px;padding:16px 26px;font-size:22px">Airlock은 <b>가설 간의 관계를 기록</b>합니다. 요인 단독 / 2개 조합 / 3개 조합의 결과를 따로 두고, 조합이 실패했다는 이유로 요인을 버리지 않으며, 손해가 난 조합만 닫습니다. 그래서 다양한 가설이 계속 살아 있는 채로 최적해에 다가갑니다.</div>
 <footer class="slide-footer"><b>airlock</b><span>차이</span><span class="pageno"></span></footer>
 </section>
 
