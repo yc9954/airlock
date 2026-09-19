@@ -105,7 +105,7 @@ the optimum — that is the product.
 
 ## Demo
 
-Pitch deck (15 slides, opens in any browser): [`demo/airlock-pitch.html`](demo/airlock-pitch.html).
+Pitch deck (16 slides, opens in any browser): [`demo/airlock-pitch.html`](demo/airlock-pitch.html).
 
 ![Airlock demo](demo/v3/airlock-demo.gif)
 

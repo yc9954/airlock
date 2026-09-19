@@ -37,6 +37,7 @@ h3 { font-size: 31px; letter-spacing: -1px; line-height: 1.35; }
 .cover { padding-top: 70px; }
 .cover h1 { font-size: 84px; letter-spacing: -4.5px; line-height: 1.12; margin-top: 8px; word-break: keep-all; max-width: 1240px; font-weight: 750; }
 .cover .ko { font-size: 26px; margin-top: 28px; max-width: 1180px; }
+.cover h1.brand { font-size: 230px; letter-spacing: -13px; line-height: 1; margin-top: 44px; font-weight: 800; }
 .stat-row { display: flex; gap: 0; margin-top: 56px; border-top: 1px solid var(--line); padding-top: 26px; }
 .stat { flex: 1; padding-right: 28px; }
 .stat + .stat { border-left: 1px solid var(--line); padding-left: 28px; }
@@ -156,17 +157,12 @@ html,body{background:#e3563b}
 <main class="viewport"><div class="stage" id="stage">
 
 <!-- 01 COVER -->
-<section class="slide cover is-active" data-title="후보 1,212개를 실험 43번으로 고릅니다">
-<p class="eyebrow enter">Airlock · Daytona HackSprint Seoul</p>
-<h1 class="enter">ML 구조 후보 1,212개를<br><span class="accent">실험 43번</span>으로 고릅니다.</h1>
-<p class="ko enter-late">Airlock은 ML 모델 구조(전처리 × 모델 × 앙상블 × 하이퍼파라미터)를 자동으로 실험하는 리서치 에이전트입니다. 후보마다 Daytona 샌드박스에서 실제로 학습·평가해 점수를 재고, 효과가 없다고 증명된 계열은 더 실험하지 않으며, 비싼 실험 전에만 사람에게 묻습니다.</p>
-<p class="en enter-late">Airlock is an auto-research agent for composite ML structures. Every candidate is trained and scored in a Daytona sandbox; families proven useless are not run again; a person is asked only before an expensive batch.</p>
-<div class="stat-row enter-late">
-<div class="stat"><b>1,212</b><span>탐색 공간의 구조 수</span></div>
-<div class="stat"><b>43</b><span>실제로 실행한 실험 수</span></div>
-<div class="stat"><b>0.979</b><span>챔피언 정확도 (5-fold 교차검증)</span></div>
-<div class="stat"><b>+0.016</b><span>최고 단일 모델(rf 0.963) 대비</span></div>
-</div>
+<section class="slide cover is-active" data-title="Airlock">
+<p class="eyebrow enter">Daytona HackSprint Seoul · 2026</p>
+<h1 class="brand enter">Airlock</h1>
+<p class="ko enter-late" style="font-size:32px;line-height:1.45;margin-top:26px;max-width:1160px">ML 모델 구조를 자동으로 실험하고, 무엇을 남기고 무엇을 버릴지 규칙에 따라 고르는 리서치 에이전트.</p>
+<p class="en enter-late" style="font-size:19px">An auto-research agent that runs ML structure experiments and decides, by rule, what to keep and what to drop.</p>
+<p class="fine enter-late" style="margin-top:56px;font-size:19px">Daytona 샌드박스에서 실행 · Nosana 오픈 모델로 설명 · DNSimple로 게시</p>
 <footer class="slide-footer"><b>airlock</b><span>DAYTONA HACKSPRINT SEOUL</span><span class="pageno"></span></footer>
 </section>
 
@@ -236,25 +232,9 @@ html,body{background:#e3563b}
 <footer class="slide-footer"><b>airlock</b><span>배경</span><span class="pageno"></span></footer>
 </section>
 
-<!-- 07 WHAT TO DROP -->
-<section class="slide" data-title="AlphaEvolve와 가장 큰 차이: 무엇을 버리느냐">
-<p class="eyebrow enter">차이 / 05</p>
-<h2 class="enter">AlphaEvolve와 가장 큰 차이는 "무엇을 버리느냐"입니다.</h2>
-<p class="ko enter-late" style="margin-top:12px">가설 A가 실험에서 성적이 나빴습니다. A를 버려야 할까요? 대부분의 오토리서치와 AlphaEvolve는 버립니다(점수 낮은 후보 탈락). ML에서는 이게 틀린 경우가 많습니다. <b>A 혼자는 나빠도, A + B는 좋을 수 있습니다.</b> 아래는 실제 실행 기록입니다.</p>
-<p class="en enter-late">Should a hypothesis that scored badly be dropped? Most auto-research (and AlphaEvolve) drops it. In ML that is often wrong: A alone can be bad while A + B is the best. Real ledger below.</p>
-<div class="evidence enter-late">
-<div class="row"><b>logistic 단독</b><div>0.944 — 단일 모델 8개 중 <span class="bad">3위</span>. 1위는 rf 0.963. 점수 높은 후보만 남기는 방식이라면 여기서 logistic은 탈락.</div></div>
-<div class="row"><b>standardize + logistic</b><div>0.975 (+0.032) → 승격. 여기에 C=0.1 → <span class="good">0.979 = 챔피언</span> (rf보다 +0.016). 3위였던 요인이 조합에서 1위가 됐습니다.</div></div>
-<div class="row"><b>polynomial</b><div>logistic과 조합: <span class="bad">−0.040 (손해)</span>. gb와 조합: <span class="good">+0.011 (유지)</span>. 첫 실패에서 polynomial을 버렸다면 gb의 이득을 놓쳤습니다.</div></div>
-<div class="row"><b>reduction (kbest · pca)</b><div>logistic·gb·rf 각각과 조합해도, standardize 뒤에 붙여도 전부 기준 미달 → <span class="bad">그때서야 봉인</span>. 한 번의 실패로는 봉인하지 않습니다.</div></div>
-</div>
-<div class="conclusion enter-late" style="margin-top:14px;padding:16px 26px;font-size:22px">Airlock은 <b>가설 간의 관계를 기록</b>합니다. 요인 단독 / 2개 조합 / 3개 조합의 결과를 따로 두고, 조합이 실패했다는 이유로 요인을 버리지 않으며, 손해가 난 조합만 닫습니다. 그래서 다양한 가설이 계속 살아 있는 채로 최적해에 다가갑니다.</div>
-<footer class="slide-footer"><b>airlock</b><span>차이</span><span class="pageno"></span></footer>
-</section>
-
-<!-- 08 WHAT IT DOES -->
+<!-- 07 WHAT IT DOES -->
 <section class="slide" data-title="Airlock이 하는 일">
-<p class="eyebrow enter">제품 / 06</p>
+<p class="eyebrow enter">제품 / 05</p>
 <h2 class="enter">ML 구조의 조합을 자동으로 실험하고, 규칙에 따라 다음 실험을 고릅니다.</h2>
 <p class="ko enter-late">한 번에 한 요인만 바꿔서 대조군과 비교합니다. 효과가 없다고 증명된 계열은 더 실험하지 않습니다. 비싼 실험 전에만 사람에게 묻습니다.</p>
 <p class="en enter-late">One factor changed per experiment, against a control. Families proven useless are sealed. A person is asked only before an expensive batch.</p>
@@ -267,14 +247,43 @@ html,body{background:#e3563b}
 <div class="op">×</div>
 <div class="fam"><small>계열 4</small><b>하이퍼파라미터</b><p>C · max_depth · n_neighbors · n_estimators · learning_rate 등 18개</p></div>
 <div class="op">=</div>
-<div class="cells"><small>탐색 공간</small><b>1,212</b><p>실행 가능한 구조 · 데이터 breast_cancer(+노이즈 20열) · 지표 5-fold 정확도</p></div>
+<div class="cells"><small>탐색 공간</small><b>1,212</b><p>규칙에 맞는 조합만 세면 1,212개 · 데이터 breast_cancer(+노이즈 20열) · 지표 5-fold 정확도</p></div>
 </div>
 <footer class="slide-footer"><b>airlock</b><span>제품</span><span class="pageno"></span></footer>
 </section>
 
-<!-- 09 DAYTONA -->
+<!-- 08 WHAT TO DROP -->
+<section class="slide" data-title="AlphaEvolve와 가장 큰 차이: 무엇을 버리느냐">
+<p class="eyebrow enter">차이 / 06</p>
+<h2 class="enter">AlphaEvolve와 가장 큰 차이는 "무엇을 버리느냐"입니다.</h2>
+<p class="ko enter-late" style="margin-top:12px">가설 A가 실험에서 성적이 나빴습니다. A를 버려야 할까요? 대부분의 오토리서치와 AlphaEvolve는 버립니다(점수 낮은 후보 탈락). ML에서는 이게 틀린 경우가 많습니다. <b>A 혼자는 나빠도, A + B는 좋을 수 있습니다.</b> 아래는 실제 실행 기록입니다(숫자는 5-fold 교차검증 정확도).</p>
+<p class="en enter-late">Should a hypothesis that scored badly be dropped? Most auto-research (and AlphaEvolve) drops it. In ML that is often wrong: A alone can be bad while A + B is the best. Real ledger below.</p>
+<div class="evidence enter-late">
+<div class="row"><b>logistic 단독</b><div>0.944 — 단일 모델 8개 중 <span class="bad">3위</span>. 1위는 rf 0.963. 점수 높은 후보만 남기는 방식이라면 여기서 logistic은 탈락.</div></div>
+<div class="row"><b>standardize + logistic</b><div>0.975 (+0.032) → 승격. 여기에 C=0.1 → <span class="good">0.979 = 챔피언</span> (rf보다 +0.016). 3위였던 요인이 조합에서 1위가 됐습니다.</div></div>
+<div class="row"><b>polynomial</b><div>logistic과 조합: <span class="bad">−0.040 (손해)</span>. gb와 조합: <span class="good">+0.011 (유지)</span>. 첫 실패에서 polynomial을 버렸다면 gb의 이득을 놓쳤습니다.</div></div>
+<div class="row"><b>reduction (kbest · pca)</b><div>logistic·gb·rf 각각과 조합해도, standardize 뒤에 붙여도 전부 기준 미달 → <span class="bad">그때서야 봉인</span>. 한 번의 실패로는 봉인하지 않습니다.</div></div>
+</div>
+<div class="conclusion enter-late" style="margin-top:14px;padding:16px 26px;font-size:22px">Airlock은 <b>가설 간의 관계를 기록</b>합니다. 요인 단독 / 2개 조합 / 3개 조합의 결과를 따로 두고, 조합이 실패했다는 이유로 요인을 버리지 않으며, 손해가 난 조합만 닫습니다. 그래서 다양한 가설이 계속 살아 있는 채로 최적해에 다가갑니다.</div>
+<footer class="slide-footer"><b>airlock</b><span>차이</span><span class="pageno"></span></footer>
+</section>
+
+<!-- 09 THREE WAYS -->
+<section class="slide" data-title="1,212개 중에서 고르는 방법은 세 가지">
+<p class="eyebrow enter">비교 / 07</p>
+<h2 class="enter">1,212개 구조 중에서 고르는 방법은 세 가지입니다.</h2>
+<p class="en enter-late">Three ways to search 1,212 structures: run all of them, hand 100 agent outputs to a human, or choose which experiments to run.</p>
+<div class="three enter-late">
+<div class="col"><small>Grid search</small><div class="big">1,212</div><div class="unit">회 실험</div><h3>전부 실행</h3><p>모든 조합을 다 돌립니다. 정확하지만, 후보가 늘어나면 비용을 감당할 수 없습니다.</p></div>
+<div class="col"><small>에이전트 병렬 실행</small><div class="big">100</div><div class="unit">개 결과, 순위 없음</div><h3>사람이 고름</h3><p>에이전트 100개가 결과 100개를 냅니다. 순위도 근거도 없어서, 결국 사람이 다시 판단해야 합니다.</p></div>
+<div class="col win"><small>Airlock · 실제 실행</small><div class="big">43</div><div class="unit">회 실험 · 챔피언 1개</div><h3>실험을 골라서 실행</h3><p>후보마다 점수를 실제로 재고, 효과 없는 계열은 더 돌리지 않고, 사람에게는 비용을 알려주며 두 번 물었습니다. 결과 0.979 — 최고 단일 모델보다 +0.016.</p></div>
+</div>
+<footer class="slide-footer"><b>airlock</b><span>비교</span><span class="pageno"></span></footer>
+</section>
+
+<!-- 10 DAYTONA -->
 <section class="slide" data-title="실험 하나마다 Daytona 샌드박스 하나">
-<p class="eyebrow enter">Daytona / 07</p>
+<p class="eyebrow enter">Daytona / 08</p>
 <h2 class="enter">실험 하나마다 Daytona 샌드박스 하나를 씁니다.</h2>
 <p class="ko enter-late">아래는 실제 실행 화면입니다. 첫 라운드의 실험 8개가 샌드박스 8개에서 동시에 시작됐습니다.</p>
 <p class="en enter-late">Real capture: the first round's 8 experiments start at once, in 8 Daytona sandboxes.</p>
@@ -291,7 +300,7 @@ html,body{background:#e3563b}
 
 <!-- 10 RULES -->
 <section class="slide" data-title="무엇을 버릴지도 규칙으로 정합니다">
-<p class="eyebrow enter">규칙 / 08</p>
+<p class="eyebrow enter">규칙 / 09</p>
 <h2 class="enter">무엇을 버릴지도 규칙으로 정합니다.</h2>
 <p class="ko enter-late">요인 하나를 버리려면 그 요인 단독 실험이 실패해야 합니다. 조합이 실패했다는 이유로는 버리지 않습니다.</p>
 <p class="en enter-late">A factor is dropped only when it fails on its own. A failed combination never drops the factors inside it.</p>
@@ -310,7 +319,7 @@ html,body{background:#e3563b}
 
 <!-- 11 STAGNATION -->
 <section class="slide" data-title="3라운드 개선이 없으면 원인 후보 둘을 세우고 가르는 실험을 고릅니다">
-<p class="eyebrow enter">정체 / 09</p>
+<p class="eyebrow enter">정체 / 10</p>
 <h2 class="enter">3라운드 동안 개선이 없으면, 원인 후보 두 개를 세우고 둘을 가르는 실험을 고릅니다.</h2>
 <p class="ko enter-late">가장 그럴듯한 아이디어가 아니라, 두 설명 중 하나를 틀렸다고 판정할 수 있는 실험 중 가장 싼 것을 먼저 실행합니다.</p>
 <p class="en enter-late">After 3 rounds without improvement: two candidate causes, then the cheapest experiment that rules one of them out.</p>
@@ -330,7 +339,7 @@ html,body{background:#e3563b}
 
 <!-- 12 HARM -->
 <section class="slide" data-title="좋은 요소 둘을 합치면 나빠질 수 있습니다. 그것도 기록합니다">
-<p class="eyebrow enter">조합 손해 / 10</p>
+<p class="eyebrow enter">조합 손해 / 11</p>
 <h2 class="enter">좋은 요소 둘을 합치면 나빠질 수 있습니다. 그것도 측정해서 기록합니다.</h2>
 <p class="ko enter-late">앙상블 점수가 구성 모델 하나의 점수보다 낮으면 "조합 손해"로 기록하고, 그 조합은 다시 실행하지 않습니다.</p>
 <p class="en enter-late">If an ensemble scores below one of its own members, that combination is recorded as harmful and never run again.</p>
@@ -347,7 +356,7 @@ html,body{background:#e3563b}
 
 <!-- 13 ASK -->
 <section class="slide" data-title="비싼 실험 전에만 사람에게 묻습니다">
-<p class="eyebrow enter">사람의 결정 / 11</p>
+<p class="eyebrow enter">사람의 결정 / 12</p>
 <h2 class="enter">비싼 실험 전에만 사람에게 묻습니다. 비용과 기본값을 함께 보여줍니다.</h2>
 <p class="ko enter-late">아래는 실제 실행 화면입니다. 사람이 답하지 않으면 정해진 기본값으로 진행하고, 그 사실을 채팅에 남깁니다.</p>
 <p class="en enter-late">Real capture. The agent asks only before an expensive batch, with the cost and the default it will take if nobody answers.</p>
@@ -365,7 +374,7 @@ html,body{background:#e3563b}
 
 <!-- 14 RESULT -->
 <section class="slide" data-title="결과: standardize + logistic (C=0.1) · 0.979">
-<p class="eyebrow enter">결과 / 12</p>
+<p class="eyebrow enter">결과 / 13</p>
 <h2 class="enter">결과: standardize + logistic (C=0.1) · <span class="num">0.979</span></h2>
 <p class="ko enter-late">점수는 5-fold 교차검증으로 측정한 값입니다. 모델이 매긴 점수가 아닙니다.</p>
 <p class="en enter-late">The score is measured 5-fold cross-validation accuracy — never a model's opinion.</p>
@@ -401,7 +410,7 @@ html,body{background:#e3563b}
 </section>
 
 </div></main>
-<footer class="toolbar"><div class="toolbar-help">← → 또는 좌우 가장자리 클릭 · F 전체화면 · P 인쇄</div><div class="toolbar-center"><button class="nav-button" id="prev" aria-label="이전">‹</button><div class="counter"><b id="cur">01</b><span id="tot"> / 15</span></div><div class="progress" id="progress"></div><button class="nav-button" id="next" aria-label="다음">›</button></div><div class="toolbar-help" id="ttitle"></div></footer>
+<footer class="toolbar"><div class="toolbar-help">← → 또는 좌우 가장자리 클릭 · F 전체화면 · P 인쇄</div><div class="toolbar-center"><button class="nav-button" id="prev" aria-label="이전">‹</button><div class="counter"><b id="cur">01</b><span id="tot"> / 16</span></div><div class="progress" id="progress"></div><button class="nav-button" id="next" aria-label="다음">›</button></div><div class="toolbar-help" id="ttitle"></div></footer>
 </div>
 <div class="zone l" id="zl" aria-hidden="true"></div><div class="zone r" id="zr" aria-hidden="true"></div>
 <script>
